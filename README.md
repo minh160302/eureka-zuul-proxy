@@ -3,4 +3,4 @@
 *This project acts as a load balancer service*
 
 ## Set up project:
-- JDK 11 with Maven
+- JDK 11 with Gradle

@@ -6,26 +6,35 @@ server:
   port: 8762
 
 eureka:
+  instance:
+    hostname: localhost
   client:
     register-with-eureka: true
     fetch-registry: true
     serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
+      default-zone: http://127.0.0.1:8766/eureka/
     allow-redirects: true
 
 zuul:
   ignoredServices: '*'
+
   routes:
     message-service:
       serviceId: message-service
       path: /message-service/**
-      url: "http://localhost:8100"
+      url: "http://127.0.0.1:8300"
       sensitiveHeaders: Cookie,Set-Cookie,Access-Control-Allow-Credentials,Access-Control-Allow-Origin
 
     auth-service:
       serviceId: auth-service
       path: /auth-service/**
-      url: "http://localhost:8200"
+      url: "http://127.0.0.1:8200"
+      sensitiveHeaders: Cookie,Set-Cookie,Access-Control-Allow-Credentials,Access-Control-Allow-Origin
+
+    shopify-service:
+      serviceId: shopify-service
+      path: /shopify/**
+      url: "http://127.0.0.1:8100"
       sensitiveHeaders: Cookie,Set-Cookie,Access-Control-Allow-Credentials,Access-Control-Allow-Origin
 
   host:
@@ -34,9 +43,9 @@ zuul:
   ignored-headers: Access-Control-Allow-Credentials, Access-Control-Allow-Origin
 
 
-ribbon:
-  eureka:
-    enabled: false
+#ribbon:
+#  eureka:
+#    enabled: false
 
 
 
